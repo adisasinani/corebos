@@ -22,6 +22,15 @@
 	<link rel="stylesheet" href="include/LD/assets/styles/mainmenu.css" type="text/css" />
 	<link rel="stylesheet" href="include/LD/assets/styles/override_lds.css" type="text/css" />
 	<link rel="stylesheet" href="include/style.css" type="text/css" />
+	<style type="text/css">
+		html {
+			background: url({$coreBOS_app_coverimage}) no-repeat center center fixed;
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+		}
+	</style>
 {* vtlib customization: Inclusion of custom javascript and css as registered *}
 {if $HEADERCSS}
 	<!-- Custom Header CSS -->
@@ -44,7 +53,7 @@
 {/literal}
 	<!-- End -->
 	{include file='BrowserVariables.tpl'}
-	{include file="Components.tpl"}
+	{include file='Components/Components.tpl'}
 </head>
 <body leftmargin=0 topmargin=0 marginheight=0 marginwidth=0 class=small style="min-width:1100px; width: 100%"> 
 	<!-- header -->
@@ -288,7 +297,7 @@
 		</div>
 	</div>
 	{if $COREBOS_HEADER_PREMENU}
-	<div style="width:100%; background-color:#fff;">
+	<div style="width:100%; background-color:#fff;"  id="premenu-wrapper">
 	{$COREBOS_HEADER_PREMENU}
 	</div>
 	{/if}
@@ -323,7 +332,7 @@
 <!-- END LDS Global header -->
 <a name="top"></a>
 
-<div id='miniCal' style='width:300px; position:absolute; display:none; left:100px; top:100px; z-index:100000'></div>
+<div id='miniCal' style='position:absolute; display:none; left:100px; top:100px; z-index:100000'></div>
 
 {if $MODULE_NAME eq 'Calendar'}
 	<div id="CalExport" style="width:300px; position:absolute; display:none; left:500px; top:100px; z-index:100000" class="layerPopup">

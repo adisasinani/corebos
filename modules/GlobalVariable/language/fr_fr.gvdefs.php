@@ -146,6 +146,13 @@ $GlobalVariableDefinitons = array(
 	'values' => '',
 	'definition' => 'Nombre maximum de caratères affichable par champ dans les infobulles. La valeur par défaut est (35) caractères. Variable utilisable pour chaque module indépendamment.',
 ),
+'ToolTip_NumberOfComments' => array(
+	'status' => 'Implemented',
+	'valuetype' => 'Integer',
+	'category' => 'Module Functionality',
+	'values' => '',
+	'definition' => 'The maximum number of comments to show in the tooltip. The default value is 5.',
+),
 'Debug_Send_VtigerCron_Error' => array(
 	'status' => 'Implémenté',
 	'valuetype' => 'Liste CSV',
@@ -545,6 +552,13 @@ $GlobalVariableDefinitons = array(
 	'values' => '0 | 1',
 	'definition' => 'Show approximate last git commit date after the application version number.',
 ),
+'Application_UI_CoverImage' => array(
+	'status' => 'Implemented',
+	'valuetype' => 'String',
+	'category' => 'Application',
+	'values' => 'file path',
+	'definition' => 'Image to use as back ground cover.',
+),
 'Document_Folder_View' => array(
 	'status' => 'Implémenté',
 	'valuetype' => 'Booléen',
@@ -649,6 +663,13 @@ $GlobalVariableDefinitons = array(
 	'category' => 'Application',
 	'values' => 'Products | Services',
 	'definition' => 'Lors de la création d\'un enregistrement dans un des modules "Commande Fournisseur", Bon de Commande, Devis, Facture et "Issuecards", la première ligne de cet enregistrement est soit un produit soit un service en fonction de la valeur de la variable.',
+),
+'Inventory_Other_Modules' => array(
+	'status' => 'Implemented',
+	'valuetype' => 'String',
+	'category' => 'Application',
+	'values' => 'comma separated list of other inventory modules',
+	'definition' => 'Inventory modules are special due to their product lines, this variable will permit you to add that type of functionality to your custom modules by adding it here.',
 ),
 'Report_Send_Scheduled_ifEmpty' => array(
 	'status' => 'Implémenté',
@@ -1115,9 +1136,16 @@ $GlobalVariableDefinitons = array(
 'EMail_CustomCurrentDate_Format' => array(
 	'status' => 'Implemented',
 	'valuetype' => 'String',
-	'category' => 'Aplicación',
+	'category' => 'Application',
 	'values' => 'valid PHP date format string',
 	'definition' => 'Format to apply to $custom-currentdate$ variable in email templates. Accepts any valid date format string from PHP. By default leave it empty to get the month in text, day and year.',
+),
+'EMail_Less_Strict_ContentClean' => array(
+	'status' => 'Implemented',
+	'valuetype' => 'Boolean',
+	'category' => 'Application',
+	'values' => '0 | 1',
+	'definition' => 'Apply or not a strict clean of the HTML we receive from the compose email body. The default is to apply a less strict clean (1).',
 ),
 'Workflow_Send_Email_ToCCBCC' => array(
 	'status' => 'Implémenté',

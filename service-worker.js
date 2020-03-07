@@ -6472,9 +6472,6 @@ precacheAndRoute([{
   "url": "include/LD/assets/icons/utility/advanced_function.svg",
   "revision": "6ea969ec64d859f3186753e8196a4156"
 }, {
-  "url": "include/LD/assets/icons/utility/advertising.svg",
-  "revision": "aa494eb91eee7cf0a5081189c175faae"
-}, {
   "url": "include/LD/assets/icons/utility/agent_session.svg",
   "revision": "41a014f3cf8619618d6bdf6671f2133d"
 }, {
@@ -9113,13 +9110,13 @@ precacheAndRoute([{
   "revision": "01c714bf88b7c2535199273cf80e89be"
 }, {
   "url": "include/js/general.js",
-  "revision": "b68e5cf25683d03a3d7d6c62f67a1897"
+  "revision": "21cef42c24fac56efcfed790f119bf66"
 }, {
   "url": "include/js/hu_hu.lang.js",
   "revision": "d5a7067172555edc0df55b3452f1532b"
 }, {
   "url": "include/js/Inventory.js",
-  "revision": "83b773fcf2e7b96c97c89c4cd1695e9c"
+  "revision": "d71b3dbfbb25c65a426efa62488aa40c"
 }, {
   "url": "include/js/it_it.lang.js",
   "revision": "aa4f748eba04c76881db396a039355da"
@@ -9212,7 +9209,7 @@ precacheAndRoute([{
   "revision": "143302dc3175324824d718937e339fff"
 }, {
   "url": "include/style.css",
-  "revision": "8963daa214226987ac19f1f2d2e7c939"
+  "revision": "749c7e5da2e7f11167b0d802523dc881"
 }, {
   "url": "include/print.css",
   "revision": "6b1e0c714dd4c389fb51b840e4cf01d2"
@@ -9254,7 +9251,7 @@ precacheAndRoute([{
   "revision": "43155535cd6da302c6ad1c34c077c642"
 }, {
   "url": "modules/com_vtiger_workflow/resources/fieldexpressionpopup.js",
-  "revision": "904edad383dcb6916900292f3a75145b"
+  "revision": "26a8cec985817455e63e9bf9d47e7ea2"
 }, {
   "url": "modules/com_vtiger_workflow/resources/fieldvalidator.js",
   "revision": "cde6fec9119f368a5eb21d4e506209db"
@@ -9299,7 +9296,7 @@ precacheAndRoute([{
   "revision": "83300b809c54b712e7ce3c8e3bf7be64"
 }, {
   "url": "modules/com_vtiger_workflow/resources/workflowlistscript.js",
-  "revision": "c2b792dc1cd2b7611a7a4673ac83f607"
+  "revision": "c772b9cea1354ccf15f30bea58aa0fc2"
 }, {
   "url": "modules/GlobalVariable/GlobalVariable.js",
   "revision": "c240060c1b952bba5d36d4a506fa0e6e"
@@ -9545,7 +9542,7 @@ precacheAndRoute([{
   "revision": "69636c3bb0f5569277b10c98016af69a"
 }, {
   "url": "modules/Emails/Emails.js",
-  "revision": "d37ea32077a5434152b2ca683c19042f"
+  "revision": "c15c02da75b33de92f4290c57a936c11"
 }, {
   "url": "modules/Rss/Rss.js",
   "revision": "9e93cf2f8dddbea42be801f31e1f73f3"
@@ -9641,7 +9638,7 @@ precacheAndRoute([{
   "revision": "2bc5785bbc8662d43972828563d8e11a"
 }, {
   "url": "modules/Contacts/Contacts.js",
-  "revision": "ba4dcd206eaff35494d0347e26a0c8d8"
+  "revision": "62781c173528c53e1f72e74e5fd6fb9c"
 }, {
   "url": "modules/Dashboard/Dashboard.js",
   "revision": "8ab2b632de69afd4fefcd5daccab5af6"

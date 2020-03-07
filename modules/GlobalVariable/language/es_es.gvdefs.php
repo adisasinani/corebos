@@ -146,6 +146,13 @@ $GlobalVariableDefinitons = array(
 	'values' => '',
 	'definition' => 'Número máximo de caracteres de un valor que se mostrarán en la ayuda emergente. El valor por defecto es 35.',
 ),
+'ToolTip_NumberOfComments' => array(
+	'status' => 'Implementada',
+	'valuetype' => 'Entero',
+	'category' => 'Funcionalidad Módulo',
+	'values' => '',
+	'definition' => 'El número máximo de comentarios para mostrar en la ayuda emergente. El valor predeterminado es 5.',
+),
 'Debug_Send_VtigerCron_Error' => array(
 	'status' => 'Implementada',
 	'valuetype' => 'CSV EMail',
@@ -546,6 +553,13 @@ $GlobalVariableDefinitons = array(
 	'values' => '0 | 1',
 	'definition' => 'Mostrar la última fecha aproximada de git después del número de versión de la aplicación.',
 ),
+'Application_UI_CoverImage' => array(
+	'status' => 'Implementada',
+	'valuetype' => 'Cadena',
+	'category' => 'Aplicación',
+	'values' => 'ruta de archivo',
+	'definition' => 'Imagen para usar como fondo.',
+),
 'Document_Folder_View' => array(
 	'status' => 'Implementada',
 	'valuetype' => 'Booleano',
@@ -650,6 +664,13 @@ $GlobalVariableDefinitons = array(
 	'category' => 'Aplicación',
 	'values' => 'Products | Services',
 	'definition' => 'Al crear un nuevo registro de módulo de inventario, la primera línea de producto que se muestra será un Producto o un Servicio dependiendo del valor de esta variable.',
+),
+'Inventory_Other_Modules' => array(
+	'status' => 'Implementada',
+	'valuetype' => 'Texto',
+	'category' => 'Aplicación',
+	'values' => 'lista separada por comas de módulos con soporte de líneas de producto',
+	'definition' => 'Los módulos de inventario son especiales debido a sus líneas de productos, esta variable le permitirá agregar ese tipo de funcionalidad a tus módulos personalizados añadiendolo aquí.',
 ),
 'Report_Send_Scheduled_ifEmpty' => array(
 	'status' => 'Implementada',
@@ -1119,6 +1140,13 @@ $GlobalVariableDefinitons = array(
 	'category' => 'Aplicación',
 	'values' => 'Cadena de formato de fecha PHP válida',
 	'definition' => 'Formato a aplicar a la variable $custom-currentdate$ en las plantillas de email. Acepta cualquier cadena de formato de fecha válida de PHP. Por defecto dejar vacio para obtener el mes en texto, dia y año.',
+),
+'EMail_Less_Strict_ContentClean' => array(
+	'status' => 'Implementada',
+	'valuetype' => 'Booleano',
+	'category' => 'Aplicación',
+	'values' => '0 | 1',
+	'definition' => 'Aplicar o no una limpieza estricta del HTML que recibimos del cuerpo del correo electrónico redactado. El valor predeterminado es aplicar una limpieza menos estricta (1).',
 ),
 'Workflow_Send_Email_ToCCBCC' => array(
 	'status' => 'Implementada',

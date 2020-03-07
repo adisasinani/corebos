@@ -21,4 +21,25 @@
 	<classname>addcbquestionfilterformatfield</classname>
 	<systemupdate>true</systemupdate>
 </changeSet>
+<changeSet>
+	<author>joebordes</author>
+	<description>delete gendoc compiled helper so it gets compiled again with the new changes to exclude INCLUDE DOC</description>
+	<filename>build/changeSets/2020/gendocdeleteUnoservice.php</filename>
+	<classname>gendocdeleteUnoservice</classname>
+	<systemupdate>true</systemupdate>
+</changeSet>
+<changeSet>
+	<author>loridacito</author>
+	<description>add table for elasticsearch indexes</description>
+	<filename>build/changeSets/2020/addtableforesindexes.php</filename>
+	<classname>Addtableforesindexes</classname>
+	<systemupdate>1</systemupdate>
+</changeSet>
+<changeSet>
+	<author>joebordes</author>
+	<description>add Application field to Updater</description>
+	<filename>build/changeSets/2020/addFieldAppTocbUpdater.php</filename>
+	<classname>addFieldAppTocbUpdater</classname>
+	<systemupdate>true</systemupdate>
+</changeSet>
 </updatesChangeLog>

@@ -88,6 +88,7 @@ class DefineGlobalVariables extends cbupdaterWorker {
 				'Application_UI_ShowGITDate',
 				'Application_UI_Version',
 				'Application_UI_URL',
+				'Application_UI_CoverImage',
 				'Application_Group_Selection_Permitted',
 				'Application_B2B',
 				'Application_FirstTimeLogin_Template',
@@ -184,8 +185,10 @@ class DefineGlobalVariables extends cbupdaterWorker {
 				'Email_Attachments_Folder',
 				'EMail_Maximum_Number_Attachments',
 				'EMail_CustomCurrentDate_Format',
+				'EMail_Less_Strict_ContentClean',
 				'MailManager_Show_SentTo_Links',
 				'ToolTip_MaxFieldValueLength',
+				'ToolTip_NumberOfComments',
 				'HelpDesk_Support_EMail',
 				'HelpDesk_Support_Name',
 				'HelpDesk_Support_Reply_EMail',
@@ -216,6 +219,7 @@ class DefineGlobalVariables extends cbupdaterWorker {
 				'Inventory_Check_Invoiced_Lines',
 				'Inventory_Tax_FillInMode',
 				'Inventory_Quantity_Precision',
+				'Inventory_Other_Modules',
 				'GContacts_Max_Results',
 
 				'CustomerPortal_PDF_Modules',
@@ -226,6 +230,12 @@ class DefineGlobalVariables extends cbupdaterWorker {
 				'CustomerPortal_PDFTemplate_PurchaseOrder',
 				'Project_Gantt_Type',
 				'RecordVersioningModules',
+
+				'ip_elastic_server',
+				'ip_elastic_indexprefix',
+				'esusername',
+				'espassword',
+
 			);
 			$delete_these = array(
 				'preload_prototype',

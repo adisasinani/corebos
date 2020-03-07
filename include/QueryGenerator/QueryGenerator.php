@@ -162,6 +162,15 @@ class QueryGenerator {
 				}
 			}
 		}
+		if (count($this->ownerFields)>0 && count($this->fields)>0) {
+			foreach ($this->fields as $fld) {
+				if (strtolower(substr($fld, 0, 6))=='users.') {
+					list($fmod, $fname) = explode('.', $fld);
+					$this->referenceFieldNameList[] = 'Users.'.$fname;
+					$this->setReferenceFieldsManually('assigned_user_id', 'Users', $fname);
+				}
+			}
+		}
 	}
 
 	public function setReferenceFieldsManually($referenceField, $refmod, $fname) {
@@ -431,12 +440,12 @@ class QueryGenerator {
 					$moduleList = $this->referenceFieldInfoList[$fieldName];
 					foreach ($moduleList as $module) {
 						if (empty($this->moduleNameFields[$module])) {
-							$meta = $this->getMeta($module);
+							$this->getMeta($module);
 						}
 					}
 				} elseif (in_array($fieldName, $this->ownerFields)) {
-					$meta = $this->getMeta('Users');
-					$meta = $this->getMeta('Groups');
+					$this->getMeta('Users');
+					$this->getMeta('Groups');
 				}
 			}
 
@@ -596,7 +605,7 @@ class QueryGenerator {
 				if ($fieldName == 'parent_id' && $baseTable == 'vtiger_seactivityrel') {
 					$tableJoinMapping[$baseTable] = 'LEFT JOIN';
 				} elseif ($fieldName == 'contact_id' && $baseTable == 'vtiger_cntactivityrel') {
-					$tableJoinMapping[$baseTable] = "LEFT JOIN";
+					$tableJoinMapping[$baseTable] = 'LEFT JOIN';
 				} else {
 					$tableJoinMapping[$baseTable] = 'INNER JOIN';
 				}
@@ -661,24 +670,20 @@ class QueryGenerator {
 		$sql = " FROM $baseTable ";
 		unset($tableList[$baseTable]);
 		foreach ($defaultTableList as $tableName) {
-			$sql .= " $tableJoinMapping[$tableName] $tableName ON $baseTable.".
-					"$baseTableIndex = $tableName.$moduleTableIndexList[$tableName]";
+			$sql .= " $tableJoinMapping[$tableName] $tableName ON $baseTable.$baseTableIndex = $tableName.$moduleTableIndexList[$tableName]";
 			unset($tableList[$tableName]);
 		}
 		$specialTableJoins = array();
 		foreach ($tableList as $tableName) {
 			if ($tableName == 'vtiger_users') {
 				$field = $moduleFields[$ownerField];
-				$sql .= " $tableJoinMapping[$tableName] $tableName ON ".$field->getTableName().".".
-					$field->getColumnName()." = $tableName.id";
+				$sql .= " $tableJoinMapping[$tableName] $tableName ON ".$field->getTableName().'.'.$field->getColumnName()." = $tableName.id";
 			} elseif ($tableName == 'vtiger_groups') {
 				$field = $moduleFields[$ownerField];
-				$sql .= " $tableJoinMapping[$tableName] $tableName ON ".$field->getTableName().".".
-					$field->getColumnName()." = $tableName.groupid";
+				$sql .= " $tableJoinMapping[$tableName] $tableName ON ".$field->getTableName().'.'.$field->getColumnName()." = $tableName.groupid";
 			} else {
-				$sql .= " $tableJoinMapping[$tableName] $tableName ON $baseTable.".
-					"$baseTableIndex = $tableName.$moduleTableIndexList[$tableName]";
-					$specialTableJoins[]=$tableName.$baseTable;
+				$sql .= " $tableJoinMapping[$tableName] $tableName ON $baseTable.$baseTableIndex = $tableName.$moduleTableIndexList[$tableName]";
+				$specialTableJoins[]=$tableName.$baseTable;
 			}
 		}
 
@@ -818,6 +823,13 @@ class QueryGenerator {
 						}
 					}
 				} else {  // FQN
+					if ($fldmod=='Users' && !in_array('vtiger_users', $referenceFieldTableList) && !in_array('vtiger_users', $alreadyinfrom)) {
+						$sql .= ' LEFT JOIN vtiger_users ON vtiger_users.id = vtiger_crmentity.smownerid ';
+						$referenceFieldTableList[] = $alreadyinfrom[] = 'vtiger_users';
+						$sql .= ' LEFT JOIN vtiger_groups ON vtiger_groups.groupid = vtiger_crmentity.smownerid ';
+						$referenceFieldTableList[] = $alreadyinfrom[] = 'vtiger_groups';
+						continue;
+					}
 					foreach ($this->referenceFieldInfoList as $fld => $mods) {
 						if ($fld=='modifiedby' || $fld == 'assigned_user_id') {
 							continue;

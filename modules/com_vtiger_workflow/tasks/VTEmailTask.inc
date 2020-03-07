@@ -37,7 +37,9 @@ class VTEmailTask extends VTTask {
 			$GenDocActive = vtlib_isModuleActive('evvtgendoc');
 			if ($GenDocActive) {
 				include_once 'modules/evvtgendoc/OpenDocument.php';
-				$GenDocPDF = (coreBOS_Settings::getSetting('cbgendoc_server', '')!='');
+				$gendoc_url = GlobalVariable::getVariable('GenDoc_Convert_URL', '', 'evvtgendoc');
+				$gendoc_srv = coreBOS_Settings::getSetting('cbgendoc_server', '');
+				$GenDocPDF = ($gendoc_srv!='' || $gendoc_url!='');
 			} else {
 				$GenDocPDF = false;
 			}
@@ -59,7 +61,7 @@ class VTEmailTask extends VTTask {
 						$format = ($GenDocPDF ? 'pdf' : 'odt');
 						$docfname = OpenDocument::doGenDocMerge($this->entityid, $docid, $format);
 						$mergeTemplateName = $adb->query_result($docrs, 0, 'filename');
-						$name = str_replace(' ', '_', $mergeTemplateName).'_'.str_replace(' ', '_', $this->entityinfo[$this->entityid]);
+						$name = str_replace(' ', '_', $this->entityinfo[$this->entityid]);
 						$docid = OpenDocument::saveAsDocument($this->entityid, $this->entitymodule, $format, $mergeTemplateName, $docfname, $name);
 						$docrs = $adb->pquery($query, array($docid));
 						$this->attachmentids = str_replace($prevdocid, $docid, $this->attachmentids);
