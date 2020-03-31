@@ -1154,6 +1154,13 @@ $GlobalVariableDefinitons = array(
 	'values' => '',
 	'definition' => 'If this variable is defined and contains a comma separated list of emails, ALL workflow emails will be sent to this list.',
 ),
+'Workflow_Email_GenDoc_Attachment_Name' => array(
+	'status' => 'Implemented',
+	'valuetype' => 'String',
+	'category' => 'Application',
+	'values' => 'Name|Number',
+	'definition' => 'When merging a GenDoc workflow email attachment, the name used for the attachment will be the Entity Name field (Name) or the Entity Number field (Number) concatenated with the template name.',
+),
 'Workflow_GeoDistance_Country_Default' => array(
 	'status' => 'Implemented',
 	'valuetype' => 'String',
@@ -1475,6 +1482,27 @@ $GlobalVariableDefinitons = array(
 	'category' => 'Application',
 	'values' => 'All | Default | None',
 	'definition' => 'In group tax mode will permit selecting the activated taxes. By default, the "All" value is applied which is the behavior before the existence of this variable. "All" calculates all active taxes, "None", sets all taxes to 0 and "Default" activates the taxes marked as default in settings',
+),
+'Graph_DataLabels' => array(
+	'status' => 'Implemented',
+	'valuetype' => 'String',
+	'category' => 'Application',
+	'values' => 'None | Value | Percentage | ValuePercentage',
+	'definition' => 'This will permit us to show or not data on the application graphs. On each section/bar of the graph we will be able to show the value, the percentage or both.',
+),
+'Graph_DataLabels_Color' => array(
+	'status' => 'Implemented',
+	'valuetype' => 'String',
+	'category' => 'Application',
+	'values' => 'CSS Color Definition',
+	'definition' => 'Defines the color of the data label to use on the bar/section. By default white is set.',
+),
+'Graph_ColorScheme' => array(
+	'status' => 'Implemented',
+	'valuetype' => 'String',
+	'category' => 'Application',
+	'values' => 'https://nagix.github.io/chartjs-plugin-colorschemes/colorchart.html',
+	'definition' => 'Defines the color scheme to use when drawing graphs. By default tableau.Tableau10 is set.',
 ),
 );
 

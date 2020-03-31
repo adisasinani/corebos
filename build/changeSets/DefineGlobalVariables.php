@@ -100,6 +100,10 @@ class DefineGlobalVariables extends cbupdaterWorker {
 				'Application_Pagination_Limit',
 				'Application_Popup_Address_Selection',
 
+				'Graph_DataLabels',
+				'Graph_DataLabels_Color',
+				'Graph_ColorScheme',
+
 				'RelatedList_Activity_DefaultStatusFilter',
 
 				'Calendar_Modules_Panel_Visible',
@@ -173,6 +177,7 @@ class DefineGlobalVariables extends cbupdaterWorker {
 				'Product_SubProduct_CostRollUp',
 				'PurchaseOrder_TransferCostPrice',
 				'PurchaseOrder_IgnoreTransferDiscount',
+				'Workflow_Email_GenDoc_Attachment_Name',
 				'Workflow_Send_Email_ToCCBCC',
 				'Workflow_GeoDistance_Country_Default',
 				'Workflow_GeoDistance_ServerIP',

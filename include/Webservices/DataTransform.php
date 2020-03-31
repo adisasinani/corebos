@@ -110,19 +110,15 @@ class DataTransform {
 				}
 				$row['contact_id'] = implode(';', $ctowsids);
 			}
-		} elseif (strtolower($meta->getEntityName()) == 'calendar') {
-			if (empty($row['sendnotification']) || strtolower($row['sendnotification'])=='no'
-				|| $row['sendnotification'] == '0' || $row['sendnotification'] == 'false'
-				|| strtolower($row['sendnotification']) == 'n'
-			) {
-				unset($row['sendnotification']);
-			}
 		}
 		$references = $meta->getReferenceFieldDetails();
 		foreach ($references as $field => $typeList) {
-			if (isset($row[$field]) && strpos($row[$field], 'x')!==false) {
-				$row[$field] = vtws_getIdComponents($row[$field]);
-				$row[$field] = $row[$field][1];
+			if (isset($row[$field])) {
+				if (strlen($row[$field])==40) {
+					$row[$field] = CRMEntity::getCRMIDfromUUID($row[$field]);
+				} elseif (strpos($row[$field], 'x')!==false) {
+					list($void, $row[$field]) = vtws_getIdComponents($row[$field]);
+				}
 			}
 		}
 		$ownerFields = $meta->getOwnerFields();
@@ -212,7 +208,7 @@ class DataTransform {
 		return $row;
 	}
 
-	public static function sanitizeReferences($row, $meta) {
+	public static function sanitizeReferences($row, $meta, $uuid = false) {
 		global $adb,$log;
 		$references = $meta->getReferenceFieldDetails();
 		$mname = strtolower($meta->getEntityName());
@@ -227,31 +223,33 @@ class DataTransform {
 				);
 				$row['parent_id'] = $refs;
 			}
-			if (!empty($row[$field])) {
+			if (isset($row[$field])) {
 				$setref = array();
 				foreach ((array) $row[$field] as $refval) {
-					$entity = getSalesEntityType($refval);
-					if ($entity!='') {
-						$setref[] = vtws_getEntityId($entity).'x'.$refval;
-					} else {
-						$found = false;
-						foreach ($typeList as $entity) {
-							$webserviceObject = VtigerWebserviceObject::fromName($adb, $entity);
-							$handlerPath = $webserviceObject->getHandlerPath();
-							$handlerClass = $webserviceObject->getHandlerClass();
-							require_once $handlerPath;
-							$handler = new $handlerClass($webserviceObject, $meta->getUser(), $adb, $log);
-							$entityMeta = $handler->getMeta();
-							if ($entityMeta->exists($refval)) {
+					if (strlen($refval)==40) {
+						$refval = CRMEntity::getCRMIDfromUUID($refval);
+					}
+					$found = false;
+					foreach ($typeList as $entity) {
+						$webserviceObject = VtigerWebserviceObject::fromName($adb, $entity);
+						$handlerPath = $webserviceObject->getHandlerPath();
+						$handlerClass = $webserviceObject->getHandlerClass();
+						require_once $handlerPath;
+						$handler = new $handlerClass($webserviceObject, $meta->getUser(), $adb, $log);
+						$entityMeta = $handler->getMeta();
+						if ($entityMeta->exists($refval)) {
+							if ($uuid && $webserviceObject->getEntityName()!='Users' && $webserviceObject->getEntityName()!='Currency') {
+								$setref[] = $webserviceObject->getUUID($refval);
+							} else {
 								$setref[] = vtws_getId($webserviceObject->getEntityId(), $refval);
-								$found = true;
-								break;
 							}
+							$found = true;
+							break;
 						}
-						if ($found !== true) {
-							//This is needed as for query operation of the related record is deleted.
-							$setref[] = null;
-						}
+					}
+					if ($found !== true) {
+						//This is needed as for query operation of the related record is deleted.
+						$setref[] = null;
 					}
 				}
 				$row[$field] = implode('|', $setref);
@@ -262,6 +260,10 @@ class DataTransform {
 			}
 		}
 		return $row;
+	}
+
+	public static function transformReferenceToUUID($row, $meta) {
+		return DataTransform::sanitizeReferences($row, $meta, true);
 	}
 
 	public static function sanitizeOwnerFields($row, $meta, $t = null) {

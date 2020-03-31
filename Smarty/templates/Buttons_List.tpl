@@ -10,7 +10,6 @@
 ********************************************************************************/
 -->*}
 <script type="text/javascript" src="modules/{$MODULE}/{$MODULE}.js"></script>
-{if empty($Module_Popup_Edit)}
 {if empty($CATEGORY)}
 {assign var="CATEGORY" value=""}
 {/if}
@@ -43,7 +42,7 @@
 {/if}
 {assign var='MODULEICON' value=$MODULE|@getModuleIcon}
 <div id="page-header-placeholder"></div>
-<div id="page-header" class="slds-page-header slds-m-vertical_medium">
+<div id="page-header" class="slds-page-header slds-m-vertical_medium noprint">
 	<div class="slds-page-header__row">
 		<div class="slds-page-header__col-title">
 			<div class="slds-media">
@@ -143,7 +142,7 @@
 									{elseif isset($CANCELGO)}window.location.href='{$CANCELGO}'
 									{else}window.history.back()
 									{/if};"
-								type="submit"
+								type="button"
 								name="button">
 									<svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
 										<use xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#reply"></use>
@@ -280,6 +279,7 @@
 		</div>
 	</div>
 	<div id="page-header-surplus">
+	{if empty($Module_Popup_Edit)}
 		<div class="slds-page-header__row">
 			<div class="slds-page-header__col-meta" style="min-width: 0;">
 				<div class="slds-page-header__meta-text slds-grid">
@@ -503,7 +503,7 @@
 				</div>
 			</div>
 		</div>
+		{/if}
 	</div>
 </div>
 {corebos_header}
-{/if}

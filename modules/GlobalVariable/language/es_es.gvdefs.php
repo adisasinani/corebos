@@ -1155,6 +1155,13 @@ $GlobalVariableDefinitons = array(
 	'values' => '',
 	'definition' => 'Si esta variable está definida y contiene una lista separada por comas de correos electrónicos, TODOS los correos electrónicos de los flujos de trabajo se enviarán a esta lista.',
 ),
+'Workflow_Email_GenDoc_Attachment_Name' => array(
+	'status' => 'Implementada',
+	'valuetype' => 'Texto',
+	'category' => 'Aplicación',
+	'values' => 'Name|Number',
+	'definition' => 'Al fusionar una plantilla GenDoc adjunto a un correo electrónico de flujo de trabajo, el nombre utilizado para el archivo adjunto será el campo Nombre de la entidad (Name) o el campo Número de entidad (Number) concatenados con el nombre de la plantilla.',
+),
 'Workflow_GeoDistance_Country_Default' => array(
 	'status' => 'Implementada',
 	'valuetype' => 'Texto',
@@ -1476,6 +1483,27 @@ $GlobalVariableDefinitons = array(
 	'category' => 'Aplicación',
 	'values' => 'All | Default | None',
 	'definition' => 'En el modo de impuestos GRUPO permitirá seleccionar los impuestos activados. Por defecto, se aplica el valor "Todos", que es el comportamiento antes de la existencia de esta variable. "Todos" calcula todos los impuestos activos, "Ninguno", establece todos los impuestos a 0 y "Predeterminado" activa los impuestos marcados como predeterminados en la configuración',
+),
+'Graph_DataLabels' => array(
+	'status' => 'Implementada',
+	'valuetype' => 'Cadena',
+	'category' => 'Aplicación',
+	'values' => 'None | Value | Percentage | ValuePercentage',
+	'definition' => 'Esta variable nos permitirá mostrar o no datos en los gráficos de la aplicación. En cada sección/barra del gráfico podremos mostrar el valor, el porcentaje o ambos.',
+),
+'Graph_DataLabels_Color' => array(
+	'status' => 'Implementada',
+	'valuetype' => 'Cadena',
+	'category' => 'Aplicación',
+	'values' => 'Definición de Color CSS',
+	'definition' => 'Define el color de la etiqueta de datos para usar en la barra/sección del gráfico. Por defecto, se utiliza el color blanco.',
+),
+'Graph_ColorScheme' => array(
+	'status' => 'Implementada',
+	'valuetype' => 'Cadena',
+	'category' => 'Aplicación',
+	'values' => 'https://nagix.github.io/chartjs-plugin-colorschemes/colorchart.html',
+	'definition' => 'Define el esquema de color a utilizar cuando se dibujan gráficos. Por defecto, se utiliza el esquema tableau.Tableau10.',
 ),
 );
 

@@ -175,15 +175,35 @@ class QueryGenerator {
 
 	public function setReferenceFieldsManually($referenceField, $refmod, $fname) {
 		global $current_user;
-		$handler = vtws_getModuleHandlerFromName($refmod, $current_user);
-		$meta = $handler->getMeta();
-		$fields = $meta->getModuleFields();
+		if ($refmod=='Users') {
+			$fields = $this->getOpenUserFields();
+		} else {
+			$handler = vtws_getModuleHandlerFromName($refmod, $current_user);
+			$meta = $handler->getMeta();
+			$fields = $meta->getModuleFields();
+		}
 		$this->referenceFields[$referenceField][$refmod][$fname] = $fields[$fname];
 		$this->setaddJoinFields($refmod.'.'.$fname);
 	}
 
 	public function setaddJoinFields($fieldname) {
 		$this->addJoinFields[] = $fieldname;
+	}
+
+	public function getOpenUserFields() {
+		global $adb;
+		$sql = "SELECT vtiger_field.*, '0' as readonly
+			FROM vtiger_field
+			WHERE columnname in ('user_name','first_name','last_name','department')
+			ORDER BY vtiger_field.sequence ASC";
+		$fields = array();
+		$result = $adb->pquery($sql, array());
+		$noofrows = $adb->num_rows($result);
+		for ($i=0; $i<$noofrows; $i++) {
+			$webserviceField = WebserviceField::fromQueryResult($adb, $result, $i);
+			$fields[$webserviceField->getFieldName()] = $webserviceField;
+		}
+		return $fields;
 	}
 
 	public function getCustomViewFields() {
@@ -264,6 +284,15 @@ class QueryGenerator {
 				}
 			}
 		} else {  // FQN
+			if ($fldmod=='Users' && !empty($this->referenceFields['assigned_user_id'])) {
+				if ($returnName) {
+					return 'vtiger_users.'.$fldname;
+				} elseif (isset($this->referenceFields['assigned_user_id'][$fldmod][$fldname])) {
+					return $this->referenceFields['assigned_user_id'][$fldmod][$fldname];
+				} else {
+					return null;
+				}
+			}
 			foreach ($this->referenceFieldInfoList as $fld => $mods) {
 				if ($fld=='modifiedby') {
 					$fld = 'assigned_user_id';
@@ -1508,6 +1537,24 @@ class QueryGenerator {
 
 	public function addConditionGlue($glue) {
 		$this->groupInfo .= " $glue ";
+	}
+
+	public static function constructAdvancedSearchURLFromReportCriteria($conditions, $module) {
+		$conds = array();
+		$grpcd = array(null);
+		foreach ($conditions as $grp => $cols) {
+			$grpcd[] = array('groupcondition' => $cols['condition']);
+			foreach ($cols['columns'] as $col) {
+				$col['groupid'] = $grp;
+				$col['columncondition'] = $col['column_condition'];
+				unset($col['column_condition']);
+				$finfo = explode(':', $col['columnname']);
+				$col['columnname'] = $finfo[0].':'.$finfo[1].':'.$finfo[3].':'.$finfo[2].':'.$finfo[4];
+				$conds[] = $col;
+			}
+		}
+		return 'index.php?module=' . $module . '&action=index&query=true&search=true&searchtype=advance&advft_criteria='
+			.urlencode(json_encode($conds)).'&advft_criteria_groups=' . urlencode(json_encode($grpcd));
 	}
 
 	public function constructAdvancedSearchConditions($module, $conditions) {
