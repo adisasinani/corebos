@@ -9,14 +9,14 @@
  ************************************************************************************/
 
 $mod_strings = array(
-'LBL_MODULE_NAME'=>'Contacts',
+'LBL_MODULE_NAME'=>'Patients',
 'LBL_INVITEE'=>'Direct Reports',
-'LBL_MODULE_TITLE'=>'Contacts: Home',
-'LBL_SEARCH_FORM_TITLE'=>'Contact Search',
-'LBL_LIST_FORM_TITLE'=>'Contact List',
-'LBL_NEW_FORM_TITLE'=>'New Contact',
+'LBL_MODULE_TITLE'=>'Patients: Home',
+'LBL_SEARCH_FORM_TITLE'=>'Patients Search',
+'LBL_LIST_FORM_TITLE'=>'Patients List',
+'LBL_NEW_FORM_TITLE'=>'New Patient',
 'LBL_CONTACT_OPP_FORM_TITLE'=>'Contact-Opportunity:',
-'LBL_CONTACT'=>'Contact:',
+'LBL_CONTACT'=>'Patient:',
 
 'LBL_LIST_NAME'=>'Name',
 'LBL_LIST_LAST_NAME'=>'Last Name',
